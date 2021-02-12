@@ -5,27 +5,40 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(System.in);
-        LinkedObjList link = ReadFromFile();
+        LinkedObjList link = new LinkedObjList();
+
+
+
 
 
         boolean stop = true;
+        link = ReadFromFile(link);
         while (stop) {
-            System.out.println("Welcome, choose an option from the menu: \n 1. Create member \n 2. Print list \n 3. Exit");
+            System.out.println("Welcome, choose an option from the menu: \n 1. Create member \n 2. Print list \n " +
+                    "3. Remove member\n -1. Exit");
             switch (scan.next()) {
                 case "1":
                     link.add(CreateMember(scan, link));
                     break;
 
                 case "2":
-                    Collections.sort((List<String>) link);
+                    //Collections.sort((List<String>) link);
                     System.out.println(link);
                     break;
 
+
+                case "3":
+                    System.out.println(link.toString(" ") + "\nType in the index of the member you want removed");
+                    int choice = scan.nextInt();
+                    link.remove(choice);
+                    System.out.println(link.toString(" "));
+
+                    break;
                 case "-1":
                     writeToFile(link);
-                    ReadFromFile();
+
                     stop = false;
                     break;
             }
@@ -67,23 +80,27 @@ public class Main {
 
     }
 
-    public static LinkedObjList ReadFromFile() throws FileNotFoundException {
+    public static LinkedObjList ReadFromFile(LinkedObjList list) throws IOException {
         Scanner scan = new Scanner(new File("Members.txt"));
-        LinkedObjList filLink = new LinkedObjList();
         while (scan.hasNextLine()) {
+
             String line = scan.nextLine();
-            String[] fields = line.split(" ");
-            String fN = fields[0];
-            String lN = fields[1];
-            int age = Integer.parseInt(fields[2]);
-            String t = fields[3];
+            //String[] words = line.split(" ");
+            Scanner read = new Scanner(line);
+
+            String fN = read.next();
+            String lN = read.next();
+            int age = read.nextInt();
+            String t = read.next();
+
 
             MemberPlayer memPla = new MemberPlayer(fN, lN, age, t);
 
-            filLink.add(memPla);
+            list.add(memPla);
         }
-        return filLink;
 
-        }
+        return list;
+    }
+
 }
 

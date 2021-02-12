@@ -14,6 +14,7 @@ public class MemberPlayer {
         this.team = team;
     }
 
+
     public String getFirstName() {
         return firstName;
     }
@@ -46,10 +47,14 @@ public class MemberPlayer {
         this.team = team;
     }
     public String toString(){
-        return "First name: "+ firstName+ "\nLast Name: "+lastName+"\nAge: "+age+"\nTeam: "+team+"\n";
+        return "\nFirst name: "+ firstName+ "\nLast Name: "+lastName+"\nAge: "+age+"\nTeam: "+team+"\n";
+    }
+    public String shortString(){
+        return "Name: " + firstName +" "+ lastName + " " + age + "\n";
+
     }
 
     public String toStringToFile(){
-        return "|"+ firstName+ "|"+lastName+"|"+age+"|"+team+"|\n";
+        return firstName+ " "+lastName+" "+age+" "+team;
     }
 }

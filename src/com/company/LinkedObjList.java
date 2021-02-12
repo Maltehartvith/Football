@@ -1,9 +1,6 @@
 package com.company;
 
-import javax.print.attribute.standard.NumberUp;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.util.Scanner;
 
 public class LinkedObjList {
     private ListNode front;
@@ -11,20 +8,41 @@ public class LinkedObjList {
     public LinkedObjList(){
         front = null;
     }
+
     public String toString() {
+        int index = 1;
         if (front == null) {
             return "[]";
         } else {
-            String result = "[" + front.data;
+            String result = "[" + "0 "+ front.data;
             ListNode current = front.next;
             while (current != null) {
-                result += ", " + current.data;
+                result += "\nIndex: " +index +" "+ current.data;
                 current = current.next;
+                index++;
             }
             result += "]";
             return result;
         }
     }
+
+    public String toString(String h) {
+        int index = 1;
+        if (front == null) {
+            return "[]";
+        } else {
+            String result = "[" + "0 "+ front.data.shortString();
+            ListNode current = front.next;
+            while (current != null) {
+                result += "Index: " +index +" "+ current.data.shortString();
+                current = current.next;
+                index++;
+            }
+            result += "]";
+            return result;
+        }
+    }
+
 
     public void add(MemberPlayer player){
         if(front == null){
@@ -50,6 +68,15 @@ public class LinkedObjList {
 
     public MemberPlayer get(int index){
         return nodeAt(index).data;
+    }
+
+    public void remove(int index){
+        if(index == 0){
+            front = front.next;
+        } else {
+            ListNode current = nodeAt(index -1);
+            current.next = current.next.next;
+        }
     }
 
     private ListNode nodeAt(int index) {
