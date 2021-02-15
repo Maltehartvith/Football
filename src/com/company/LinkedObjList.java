@@ -87,7 +87,4 @@ public class LinkedObjList {
         return current;
     }
 
-    //public void remove(MemberPlayer player.firstName){}
-
-
 }

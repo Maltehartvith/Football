@@ -7,6 +7,9 @@ public class MemberPlayer {
     private int age;
     private String team;
 
+    public MemberPlayer(String firstName){
+        this.firstName = firstName;
+    }
     public MemberPlayer(String firstName, String lastName, int age, String team) {
         this.firstName = firstName;
         this.lastName = lastName;
